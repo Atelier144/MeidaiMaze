@@ -16,4 +16,9 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void MoveToMainSceneFromTitleScene()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }
