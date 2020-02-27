@@ -7,23 +7,98 @@ using DG.Tweening;
 
 public class MainManager : GameManager
 {
+    const int FIRE = 0;
+    const int THUNDER = 1;
+    const int ICE = 2;
+
     [SerializeField] GameObject gameObjectImageBackground;
 
     [SerializeField] GameObject gameObjectPanelHP;
     [SerializeField] GameObject gameObjectPanelGold;
     [SerializeField] GameObject gameObjectPanelAhead;
+    [SerializeField] GameObject gameObjectPanelMeidai;
+    [SerializeField] GameObject gameObjectPanelMonster;
+    [SerializeField] GameObject gameObjectPanelAnswers;
+
+    [SerializeField] GameObject gameObjectImageEffect;
+
+    [SerializeField] GameObject gameObjectImageMonster;
+    [SerializeField] GameObject gameObjectTextMonsterName;
+    [SerializeField] GameObject gameObjectTextWeakpoint;
+    [SerializeField] GameObject gameObjectImageWeakpoint;
+    [SerializeField] GameObject gameObjectTextAttackPoint;
+    [SerializeField] GameObject gameObjectTextAttackPointValue;
+    [SerializeField] GameObject gameObjectSliderAttackTime;
+    [SerializeField] GameObject gameObjectImageAttackTimeIcon;
+
+    [SerializeField] GameObject gameObjectSliderHP;
+    [SerializeField] GameObject gameObjectTextHP;
+
+    [SerializeField] Button[] buttonsAnswers = new Button[3];
+    [SerializeField] Text[] textsButtonsAnswers = new Text[3];
+
+    Animator animatorImageEffect;
+
+    Slider sliderAttackTime;
+
+    Slider sliderHP;
+    Text textHP;
 
     int step = 1;
+    int hp = 100;
+    int maxHp = 100;
+
+    int minAttackTime = 150;
+    int maxAttackTime = 300;
+    int minAttackPoint = 0;
+    int maxAttackPoint = 100;
+
+    int currentAttackTime;
+    int currentAttackPoint = 12;
+
+    int currentAttackTimeMax;
+
+    bool doesMonsterExist = false;
+
+
+
     // Start is called before the first frame update
     protected override void Start()
     {
+        animatorImageEffect = gameObjectImageEffect.GetComponent<Animator>();
+
+        sliderHP = gameObjectSliderHP.GetComponent<Slider>();
+        textHP = gameObjectTextHP.GetComponent<Text>();
+
+        sliderAttackTime = gameObjectSliderAttackTime.GetComponent<Slider>();
+
         StartCoroutine(CoroutineIntroduction());
+
+        
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        
+        if (doesMonsterExist)
+        {
+            sliderAttackTime.value = currentAttackTime;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (doesMonsterExist)
+        {
+            if(currentAttackTime > 0)
+            {
+                currentAttackTime--;
+            }
+            else
+            {
+                StartCoroutine(MonsterAttack());
+            }
+        }
     }
 
     IEnumerator CoroutineIntroduction()
@@ -66,11 +141,83 @@ public class MainManager : GameManager
     void AddStep()
     {
         step++;
-        switch (0)
+        switch (Random.Range(0,2))
         {
             case 0:
                 gameObjectPanelAhead.SetActive(true);
                 break;
+            case 1:
+                StartCoroutine(AppearMonster());
+                break;
         }
+    }
+
+    IEnumerator AppearMonster()
+    {
+        gameObjectPanelMonster.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+
+        doesMonsterExist = true;
+
+        ActivateMonsterStatus(true);
+        ActivateMeidaiAndAnswers(true);
+
+        sliderAttackTime.maxValue = 500;
+        currentAttackTime = 500;
+    }
+
+    public void OnClickButtonAnswer(int s)
+    {
+        if (doesMonsterExist)
+        {
+            Debug.Log("Answer" + s);
+            doesMonsterExist = false;
+        }
+    }
+
+    IEnumerator MonsterAttack()
+    {
+        ActivateMonsterStatus(false);
+        ActivateMeidaiAndAnswers(false);
+        doesMonsterExist = false;
+
+        hp -= currentAttackPoint;
+        if (hp > 0)
+        {
+            animatorImageEffect.SetTrigger("Damaged");
+            currentAttackTime = 20;
+            sliderHP.value = hp;
+            textHP.text = hp + " / " + maxHp;
+            yield return new WaitForSeconds(2.0f);
+
+            ActivateMonsterStatus(true);
+            ActivateMeidaiAndAnswers(true);
+            doesMonsterExist = true;
+        }
+        else
+        {
+            animatorImageEffect.SetTrigger("Defeated");
+            hp = 0;
+            sliderHP.value = hp;
+            textHP.text = hp + " / " + maxHp;
+            yield return new WaitForSeconds(6.0f);
+            MoveToEndSceneFromMainScene();
+        }
+    }
+
+    void ActivateMonsterStatus(bool s)
+    {
+        gameObjectImageAttackTimeIcon.SetActive(s);
+        gameObjectImageWeakpoint.SetActive(s);
+        gameObjectSliderAttackTime.SetActive(s);
+        gameObjectTextWeakpoint.SetActive(s);
+        gameObjectTextAttackPoint.SetActive(s);
+        gameObjectTextAttackPointValue.SetActive(s);
+    }
+
+    void ActivateMeidaiAndAnswers(bool s)
+    {
+        gameObjectPanelMeidai.SetActive(s);
+        gameObjectPanelAnswers.SetActive(s);
     }
 }

@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
+    static int score;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -20,5 +23,20 @@ public class GameManager : MonoBehaviour
     public void MoveToMainSceneFromTitleScene()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void MoveToEndSceneFromMainScene()
+    {
+        SceneManager.LoadScene("EndScene");
+    }
+
+    public void SetScore(int score)
+    {
+        GameManager.score = score;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }
