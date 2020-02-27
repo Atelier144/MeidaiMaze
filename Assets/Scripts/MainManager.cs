@@ -171,7 +171,7 @@ public class MainManager : GameManager
     {
         if (doesMonsterExist)
         {
-            Debug.Log("Answer" + s);
+            StartCoroutine(Attack(s));
             doesMonsterExist = false;
         }
     }
@@ -204,6 +204,13 @@ public class MainManager : GameManager
             yield return new WaitForSeconds(6.0f);
             MoveToEndSceneFromMainScene();
         }
+    }
+
+    IEnumerator Attack(int element)
+    {
+        string[] triggerNames = { "FireAttack", "ThunderAttack", "IceAttack" };
+        animatorImageEffect.SetTrigger(triggerNames[element]);
+        yield return new WaitForSeconds(5.0f);
     }
 
     void ActivateMonsterStatus(bool s)

@@ -34,4 +34,22 @@ public class ImageEffect : MonoBehaviour
         audioSources[2].time = 0.0f;
         audioSources[2].Play();
     }
+
+    public void PlaySoundFireAttack()
+    {
+        audioSources[3].time = 0.0f;
+        audioSources[3].Play();
+    }
+
+    public void PlaySoundThunderAttack()
+    {
+        audioSources[4].time = 0.0f;
+        audioSources[4].Play();
+    }
+
+    public void PlaySoundIceAttack()
+    {
+        audioSources[5].time = 0.0f;
+        audioSources[5].Play();
+    }
 }

@@ -115,6 +115,7 @@
     <Compile Include="Assets\Scripts\EndManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ImageEffect.cs" />
+    <Compile Include="Assets\Scripts\ImageMonster.cs" />
     <Compile Include="Assets\Scripts\MainManager.cs" />
     <Compile Include="Assets\Scripts\TitleManager.cs" />
     <Compile Include="Assets\naichilab\unity-simple-ranking\Sample\SampleSceneManager.cs" />
