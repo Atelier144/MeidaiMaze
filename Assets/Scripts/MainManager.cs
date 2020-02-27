@@ -135,6 +135,7 @@ public class MainManager : GameManager
     IEnumerator CoroutineOnClickButtonEscape()
     {
         gameObjectPanelAhead.SetActive(false);
+        animatorImageEffect.SetTrigger("Escape");
         yield return new WaitForSeconds(2.0f);
     }
 

@@ -15,4 +15,9 @@ public class EndManager : GameManager
     {
         
     }
+
+    public void OnClickButtonRanking()
+    {
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(Random.Range(0, 100000000));
+    }
 }

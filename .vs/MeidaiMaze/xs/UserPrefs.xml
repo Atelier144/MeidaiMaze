@@ -1,19 +1,26 @@
 ﻿<Properties StartupConfiguration="{7A81D963-2FFC-6F90-B054-8EA8D38A5CEE}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MainManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/naichilab/unity-simple-ranking/Scripts/RankingSceneManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameManager.cs" Line="22" Column="45" />
-      <File FileName="Assets/Scripts/EndManager.cs" />
-      <File FileName="Assets/Scripts/MainManager.cs" Line="54" Column="47" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="42" Column="2" />
+      <File FileName="Assets/Scripts/EndManager.cs" Line="21" Column="1" />
+      <File FileName="Assets/Scripts/MainManager.cs" Line="138" Column="50" />
       <File FileName="Assets/Scripts/TitleManager.cs" />
+      <File FileName="Assets/Scripts/ImageEffect.cs" Line="7" Column="32" />
+      <File FileName="Assets/naichilab/unity-simple-ranking/Scripts/RankingSceneManager.cs" Line="5" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="MeidaiMaze" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="MainManager.cs" selected="True" />
+              <Node name="naichilab" expanded="True">
+                <Node name="unity-simple-ranking" expanded="True">
+                  <Node name="Scripts" expanded="True">
+                    <Node name="RankingSceneManager.cs" selected="True" />
+                  </Node>
+                </Node>
               </Node>
+              <Node name="Scripts" expanded="True" />
             </Node>
           </Node>
         </State>
