@@ -37,7 +37,12 @@ public class MainManager : GameManager
     [SerializeField] Button[] buttonsAnswers = new Button[3];
     [SerializeField] Text[] textsButtonsAnswers = new Text[3];
 
+    [SerializeField] Sprite spriteGoldSmall;
+    [SerializeField] Sprite spriteGoldMedium;
+    [SerializeField] Sprite spriteGoldBig;
+
     Animator animatorImageEffect;
+    Animator animatorImageMonster;
 
     Slider sliderAttackTime;
 
@@ -66,6 +71,7 @@ public class MainManager : GameManager
     protected override void Start()
     {
         animatorImageEffect = gameObjectImageEffect.GetComponent<Animator>();
+        animatorImageMonster = gameObjectImageMonster.GetComponent<Animator>();
 
         sliderHP = gameObjectSliderHP.GetComponent<Slider>();
         textHP = gameObjectTextHP.GetComponent<Text>();
@@ -211,6 +217,15 @@ public class MainManager : GameManager
         string[] triggerNames = { "FireAttack", "ThunderAttack", "IceAttack" };
         animatorImageEffect.SetTrigger(triggerNames[element]);
         yield return new WaitForSeconds(5.0f);
+        if (true)
+        {
+            animatorImageMonster.SetTrigger("DamageEffective");
+            yield return new WaitForSeconds(3.0f);
+            gameObjectPanelMonster.SetActive(false);
+            ActivateMeidaiAndAnswers(false);
+            yield return new WaitForSeconds(1.0f);
+            gameObjectPanelAhead.SetActive(true);
+        }
     }
 
     void ActivateMonsterStatus(bool s)
@@ -227,5 +242,10 @@ public class MainManager : GameManager
     {
         gameObjectPanelMeidai.SetActive(s);
         gameObjectPanelAnswers.SetActive(s);
+    }
+
+    void GetGold(int value)
+    {
+
     }
 }
