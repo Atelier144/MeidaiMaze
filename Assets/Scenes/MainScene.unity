@@ -121,6 +121,70 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &108286348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 108286349}
+  - component: {fileID: 108286350}
+  m_Layer: 0
+  m_Name: MeidaiList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &108286349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108286348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1078537572}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &108286350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108286348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9b024b63d45d346881c3248a9ebc4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meidais:
+  - meidai: 
+    fire: 
+    thunder: 
+    ice: 
+  - meidai: 
+    fire: 
+    thunder: 
+    ice: 
+  - meidai: 
+    fire: 
+    thunder: 
+    ice: 
+  - meidai: 
+    fire: 
+    thunder: 
+    ice: 
+  - meidai: 
+    fire: 
+    thunder: 
+    ice: 
 --- !u!1 &132433647
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &143783581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1097,7 +1161,7 @@ GameObject:
   - component: {fileID: 753144746}
   - component: {fileID: 753144745}
   m_Layer: 5
-  m_Name: ImageGold
+  m_Name: ImageGainGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2060,6 +2124,7 @@ MonoBehaviour:
   gameObjectPanelMeidai: {fileID: 1217032621}
   gameObjectPanelMonster: {fileID: 1613602353}
   gameObjectPanelAnswers: {fileID: 829210740}
+  gameObjectPanelGainGold: {fileID: 1832575611}
   gameObjectImageEffect: {fileID: 2044511585}
   gameObjectImageMonster: {fileID: 1368251120}
   gameObjectTextMonsterName: {fileID: 816334352}
@@ -2071,6 +2136,7 @@ MonoBehaviour:
   gameObjectImageAttackTimeIcon: {fileID: 773223326}
   gameObjectSliderHP: {fileID: 1047000480}
   gameObjectTextHP: {fileID: 868487635}
+  gameObjectTextGoldValue: {fileID: 1539828800}
   buttonsAnswers:
   - {fileID: 1265907452}
   - {fileID: 1227626794}
@@ -2079,9 +2145,11 @@ MonoBehaviour:
   - {fileID: 1116981725}
   - {fileID: 839514779}
   - {fileID: 348472230}
-  spriteGoldSmall: {fileID: 0}
-  spriteGoldMedium: {fileID: 0}
-  spriteGoldBig: {fileID: 0}
+  gameObjectImageGainGold: {fileID: 753144743}
+  gameObjectTextGainGoldValue: {fileID: 1288511638}
+  spriteGoldSmall: {fileID: 21300000, guid: d78416fdb0ce14d6c80aae82cc534179, type: 3}
+  spriteGoldMedium: {fileID: 21300000, guid: 347894e7ec983443c9fad4e3ae167efa, type: 3}
+  spriteGoldBig: {fileID: 21300000, guid: b6536bf79762d4353854ed148f98d9b2, type: 3}
 --- !u!4 &1078537572
 Transform:
   m_ObjectHideFlags: 0
@@ -2092,7 +2160,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 108286349}
+  - {fileID: 2033661386}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2819,7 +2889,7 @@ GameObject:
   - component: {fileID: 1288511641}
   - component: {fileID: 1288511640}
   m_Layer: 5
-  m_Name: TextGoldValue
+  m_Name: TextGainGoldValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2857,7 +2927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0.75, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3561,12 +3631,12 @@ GameObject:
   - component: {fileID: 1832575614}
   - component: {fileID: 1832575613}
   m_Layer: 5
-  m_Name: PanelGold
+  m_Name: PanelGainGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1832575612
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3602,7 +3672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3927,6 +3997,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950858631}
   m_CullTransparentMesh: 0
+--- !u!1 &2033661385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2033661386}
+  - component: {fileID: 2033661387}
+  m_Layer: 0
+  m_Name: MonsterList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2033661386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033661385}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1078537572}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2033661387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033661385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9397a0dddfe3404a9a0b49e2a61d548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2038665893
 GameObject:
   m_ObjectHideFlags: 0
@@ -4710,7 +4823,7 @@ GameObject:
   - component: {fileID: 2064426700}
   - component: {fileID: 2064426699}
   m_Layer: 5
-  m_Name: TextGold
+  m_Name: TextGainGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4748,7 +4861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0.75, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

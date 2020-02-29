@@ -19,6 +19,7 @@ public class MainManager : GameManager
     [SerializeField] GameObject gameObjectPanelMeidai;
     [SerializeField] GameObject gameObjectPanelMonster;
     [SerializeField] GameObject gameObjectPanelAnswers;
+    [SerializeField] GameObject gameObjectPanelGainGold;
 
     [SerializeField] GameObject gameObjectImageEffect;
 
@@ -33,9 +34,13 @@ public class MainManager : GameManager
 
     [SerializeField] GameObject gameObjectSliderHP;
     [SerializeField] GameObject gameObjectTextHP;
+    [SerializeField] GameObject gameObjectTextGoldValue;
 
     [SerializeField] Button[] buttonsAnswers = new Button[3];
     [SerializeField] Text[] textsButtonsAnswers = new Text[3];
+
+    [SerializeField] GameObject gameObjectImageGainGold;
+    [SerializeField] GameObject gameObjectTextGainGoldValue;
 
     [SerializeField] Sprite spriteGoldSmall;
     [SerializeField] Sprite spriteGoldMedium;
@@ -48,10 +53,15 @@ public class MainManager : GameManager
 
     Slider sliderHP;
     Text textHP;
+    Text textGoldValue;
+
+    Image imageGainGold;
+    Text textGainGoldValue;
 
     int step = 1;
     int hp = 100;
     int maxHp = 100;
+    int gold = 0;
 
     int minAttackTime = 150;
     int maxAttackTime = 300;
@@ -75,8 +85,12 @@ public class MainManager : GameManager
 
         sliderHP = gameObjectSliderHP.GetComponent<Slider>();
         textHP = gameObjectTextHP.GetComponent<Text>();
+        textGoldValue = gameObjectTextGoldValue.GetComponent<Text>();
 
         sliderAttackTime = gameObjectSliderAttackTime.GetComponent<Slider>();
+
+        imageGainGold = gameObjectImageGainGold.GetComponent<Image>();
+        textGainGoldValue = gameObjectTextGainGoldValue.GetComponent<Text>();
 
         StartCoroutine(CoroutineIntroduction());
 
@@ -131,7 +145,9 @@ public class MainManager : GameManager
     {
         gameObjectImageBackground.GetComponent<RectTransform>().DOScale(new Vector3(5.0f, 5.0f, 5.0f), 2.0f);
         gameObjectImageBackground.GetComponent<Image>().DOColor(new Color(1.0f, 1.0f, 1.0f, 0.0f), 2.0f);
+
         gameObjectPanelAhead.SetActive(false);
+        gameObjectPanelGainGold.SetActive(false);
         yield return new WaitForSeconds(2.0f);
         gameObjectImageBackground.GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
         gameObjectImageBackground.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f);
@@ -141,6 +157,7 @@ public class MainManager : GameManager
     IEnumerator CoroutineOnClickButtonEscape()
     {
         gameObjectPanelAhead.SetActive(false);
+        gameObjectPanelGainGold.SetActive(false);
         animatorImageEffect.SetTrigger("Escape");
         yield return new WaitForSeconds(2.0f);
     }
@@ -148,7 +165,7 @@ public class MainManager : GameManager
     void AddStep()
     {
         step++;
-        switch (Random.Range(0,2))
+        switch (Random.Range(0,3))
         {
             case 0:
                 gameObjectPanelAhead.SetActive(true);
@@ -156,6 +173,11 @@ public class MainManager : GameManager
             case 1:
                 StartCoroutine(AppearMonster());
                 break;
+            case 2:
+                GetGold(Random.Range(10, 1000));
+                gameObjectPanelAhead.SetActive(true);
+                break;
+
         }
     }
 
@@ -225,6 +247,7 @@ public class MainManager : GameManager
             ActivateMeidaiAndAnswers(false);
             yield return new WaitForSeconds(1.0f);
             gameObjectPanelAhead.SetActive(true);
+            GetGold(Random.Range(100, 100000));
         }
     }
 
@@ -246,6 +269,24 @@ public class MainManager : GameManager
 
     void GetGold(int value)
     {
-
+        if (value > 0)
+        {
+            gold += value;
+            gameObjectPanelGainGold.SetActive(true);
+            textGainGoldValue.text = value.ToString();
+            textGoldValue.text = gold.ToString("d8");
+            if (value < 1000)
+            {
+                imageGainGold.sprite = spriteGoldSmall;
+            }
+            else if(value < 10000)
+            {
+                imageGainGold.sprite = spriteGoldMedium;
+            }
+            else
+            {
+                imageGainGold.sprite = spriteGoldBig;
+            }
+        }
     }
 }
