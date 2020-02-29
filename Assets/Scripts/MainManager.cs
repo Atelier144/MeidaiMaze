@@ -49,6 +49,7 @@ public class MainManager : GameManager
     Animator animatorImageEffect;
     Animator animatorImageMonster;
 
+    Image imageMonster;
     Slider sliderAttackTime;
 
     Slider sliderHP;
@@ -57,6 +58,12 @@ public class MainManager : GameManager
 
     Image imageGainGold;
     Text textGainGoldValue;
+
+    MeidaiList meidaiList;
+    MonsterList monsterList;
+
+    Meidai currentMeidai;
+    Monster currentMonster;
 
     int step = 1;
     int hp = 100;
@@ -87,14 +94,16 @@ public class MainManager : GameManager
         textHP = gameObjectTextHP.GetComponent<Text>();
         textGoldValue = gameObjectTextGoldValue.GetComponent<Text>();
 
+        imageMonster = gameObjectImageMonster.GetComponent<Image>();
         sliderAttackTime = gameObjectSliderAttackTime.GetComponent<Slider>();
 
         imageGainGold = gameObjectImageGainGold.GetComponent<Image>();
         textGainGoldValue = gameObjectTextGainGoldValue.GetComponent<Text>();
 
-        StartCoroutine(CoroutineIntroduction());
+        meidaiList = GameObject.Find("MeidaiList").GetComponent<MeidaiList>();
+        monsterList = GameObject.Find("MonsterList").GetComponent<MonsterList>();
 
-        
+        StartCoroutine(CoroutineIntroduction());
     }
 
     // Update is called once per frame
@@ -183,6 +192,10 @@ public class MainManager : GameManager
 
     IEnumerator AppearMonster()
     {
+        currentMonster = monsterList.monsters[Random.Range(0, monsterList.monsters.Length)];
+
+        imageMonster.sprite = currentMonster.sprite;
+
         gameObjectPanelMonster.SetActive(true);
         yield return new WaitForSeconds(2.5f);
 
